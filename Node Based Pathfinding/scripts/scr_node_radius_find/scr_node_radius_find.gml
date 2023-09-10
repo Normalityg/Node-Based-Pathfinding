@@ -1,4 +1,4 @@
-function node_radius_find(_node, _maxRadius = 64, _steps = 8){ // Finds a nodes radius of space without collisions
+function node_radius_find(_node, _maxRadius = 128, _steps = 16){ // Finds a nodes radius of space without collisions
 	// Create variables
 	var currentRadius = 0;
 	var stepIncrease = _maxRadius / _steps; // How much the radius should increase at each step
@@ -15,6 +15,6 @@ function node_radius_find(_node, _maxRadius = 64, _steps = 8){ // Finds a nodes 
 		}
 	}
 	
-	return(currentRadius) // Return the highest radius that the checks managed to pass
+	return(currentRadius * 0.5); // Return half of the highest radius that the checks managed to pass
 	
 }

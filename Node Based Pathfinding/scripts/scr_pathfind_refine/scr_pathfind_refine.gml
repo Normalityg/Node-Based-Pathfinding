@@ -42,7 +42,3 @@ function pathfind_refine(_path, _iterations, _refinePercent = 0.1){ // Function 
 		}
 	}
 }
-
-function pathfind_refine_smart(_path, _timeBudget){
-	
-}

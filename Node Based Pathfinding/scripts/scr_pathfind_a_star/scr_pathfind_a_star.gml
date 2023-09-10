@@ -5,7 +5,7 @@ function pathfind_a_star(_startNode, _endNode){ // Function for finding the fast
 	var toCheck = [[_startNode, _startNode.nodesPointer, -1, 0, 0, 0]]; // Array of nodes needing to be checked [nodeId, nodesPointer, lastNode, distanceFromStart, heuristic]
 	var toCheckLength = 1;
 	
-	var checkedMaster = array_create(array_length(nodes), -1); // List of if a node has been checked or not and a pointer to where in checked they are
+	var checkedMaster = array_create(array_length(nodes) + 1, -1); // List of if a node has been checked or not and a pointer to where in checked they are // Add one to length so a ghost node can be used
 	
 	var finalNode = -1; // Whether or not the _endNode was found
 	
@@ -74,9 +74,14 @@ function pathfind_a_star(_startNode, _endNode){ // Function for finding the fast
 			pathLength ++;
 			currentNode = checked[currentNode[2]];
 		}
-		path[pathLength] = currentNode;
+		if (pathRefining){
+			pathfind_refine(path, 3, 0.1);// If pathRefining is on refine the path
+		}
+		
+		path[pathLength] = currentNode; // Add the ghost at the end of the path
+		
 		return(path);
 	}
-	// Otherwise just return an empty array
-	return([]);
+	// Otherwise just return false
+	return(false);
 }
