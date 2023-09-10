@@ -7,9 +7,9 @@ function node_set(){ // Function to start tracking and treating the object as a 
 		
 		// Variable creation
 		visibleNodes = []; // List of all nodes this node has line of sight to
+		nodeRadius = node_radius_find(self); // Set radius of clear space for node
 		
-		
-		if (makeBake){ // Make and bake is on bake this node on make (;
+		if (makeBake){ // If make and bake is on bake this node on make
 			node_bake(self);
 		}
 	}
