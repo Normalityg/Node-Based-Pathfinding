@@ -1,4 +1,4 @@
-function pathfind_a_star(_startNode, _endNode){ // Function for finding the fastest way between two nodes (sometimes makes very slight pathing mistakes but not worth the perfomance loss)
+function path_a_star(_startNode, _endNode){ // Function for finding the fastest way between two nodes (sometimes makes very slight pathing mistakes but not worth the perfomance loss)
 	
 	var checked = []; // Array of already checked nodes
 	var checkedLength = -1; // It gets added to before its used so it technically starts a 0
@@ -73,9 +73,6 @@ function pathfind_a_star(_startNode, _endNode){ // Function for finding the fast
 			path[pathLength] = [currentNode[0], 0, 0]; // Add the nodes Id to the path and the x and y offs
 			pathLength ++;
 			currentNode = checked[currentNode[2]];
-		}
-		if (pathRefining){
-			pathfind_refine(path, 3, 0.1);// If pathRefining is on refine the path
 		}
 		
 		path[pathLength] = currentNode; // Add the ghost at the end of the path

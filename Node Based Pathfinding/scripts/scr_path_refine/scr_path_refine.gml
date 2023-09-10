@@ -1,4 +1,4 @@
-function pathfind_refine(_path, _iterations, _refinePercent = 0.1){ // Function to smooth a path
+function path_refine(_path, _iterations, _refinePercent = 0.1){ // Function to smooth a path WARNING This does not use complexNodes as its collision and will end up have no space between the collisions
 	
 	if (array_length(_path) <= 2)return; // Return if there are not enough nodes
 	

@@ -4,15 +4,15 @@ function setup(){ // Has necesary variables
 	#macro debug global.nodeDebug
 	#macro makeBake global.nodeMakeBake
 	#macro complexNodes global.complexNodeVisibility
-	#macro pathRefining global.autoRefinePathOnFind
+	#macro nodeDistance global.maxNodeDistance
 	
 	#macro nodeCollision obj_wall // Replace this with the object(s) you want the nodes to not make connections through
 	
 	// Create variables that the nodes and pathfinders need to work
-	debug = true;
+	debug = false;
 	makeBake = true;
-	complexNodes = false;
-	pathRefining = true;
+	complexNodes = true;
+	nodeDistance = 256;
 	
 	
 	nodes = [];

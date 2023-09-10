@@ -2,7 +2,7 @@ draw_self();
 pathfinder_debug_draw();
 //node_debug_draw();
 //
-//repeat(1)var path = pathfind_a_star(self, obj_mouse);
+//repeat(1)var path = path_a_star(self, obj_mouse);
 //
 //var startTime = get_timer();
 //

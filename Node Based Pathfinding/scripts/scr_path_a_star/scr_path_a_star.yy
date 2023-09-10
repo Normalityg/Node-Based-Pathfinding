@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "scr_pathfind_refine",
+  "name": "scr_path_a_star",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {

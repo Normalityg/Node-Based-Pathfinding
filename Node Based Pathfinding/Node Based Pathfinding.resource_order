@@ -24,11 +24,11 @@
     {"name":"scr_node_radius_find","order":7,"path":"scripts/scr_node_radius_find/scr_node_radius_find.yy",},
     {"name":"obj_control","order":2,"path":"objects/obj_control/obj_control.yy",},
     {"name":"obj_pathfinder","order":1,"path":"objects/obj_pathfinder/obj_pathfinder.yy",},
-    {"name":"scr_pathfind_a_star","order":6,"path":"scripts/scr_pathfind_a_star/scr_pathfind_a_star.yy",},
+    {"name":"scr_path_a_star","order":6,"path":"scripts/scr_path_a_star/scr_path_a_star.yy",},
     {"name":"scr_node_baking","order":2,"path":"scripts/scr_node_baking/scr_node_baking.yy",},
     {"name":"scr_node_status","order":5,"path":"scripts/scr_node_status/scr_node_status.yy",},
     {"name":"scr_node_moving","order":4,"path":"scripts/scr_node_moving/scr_node_moving.yy",},
     {"name":"scr_pathfinder_step","order":9,"path":"scripts/scr_pathfinder_step/scr_pathfinder_step.yy",},
-    {"name":"scr_pathfind_refine","order":8,"path":"scripts/scr_pathfind_refine/scr_pathfind_refine.yy",},
+    {"name":"scr_path_refine","order":8,"path":"scripts/scr_path_refine/scr_path_refine.yy",},
   ],
 }

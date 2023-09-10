@@ -4,7 +4,10 @@ function pathfinder_set(){
 		targetNode = obj_mouse.id; // The node that is being pathed to
 		
 		currentNode = -1; // Curent node being traveled to [node, xOffset, yOffset]
-		movementTargetLocation = [0,0]; // Where in the world the next node is
+		
+		// Where in the world the next node on the path is at
+		movementX = x; // Start going to self x
+		movementY = y; // Start going to self y
 		
 		pathTimer = 5; // Timer that when hits zero recalculates path
 		path = []; // List of nodes decided by the pathfinding algorithm to reach the targetNode [node, xOffset, yOffset]
