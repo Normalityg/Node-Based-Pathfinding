@@ -1,15 +1,15 @@
-function path_a_star(_startNode, _endNode){ // Function for finding the fastest way between two nodes (sometimes makes very slight pathing mistakes but not worth the perfomance loss)
+function path_a_star(_startNode, _endNode){ // Function for finding the fastest way between two nbpNodes (sometimes makes very slight pathing mistakes but not worth the perfomance loss)
 	
-	var checked = []; // Array of already checked nodes
+	var checked = []; // Array of already checked nbpNodes
 	var checkedLength = -1; // It gets added to before its used so it technically starts a 0
-	var toCheck = [[_startNode, _startNode.nodesPointer, -1, 0, 0, 0]]; // Array of nodes needing to be checked [nodeId, nodesPointer, lastNode, distanceFromStart, heuristic]
+	var toCheck = [[_startNode, _startNode.nodesPointer, -1, 0, 0, 0]]; // Array of nbpNodes needing to be checked [nodeId, nodesPointer, lastNode, distanceFromStart, heuristic]
 	var toCheckLength = 1;
 	
-	var checkedMaster = array_create(array_length(nodes) + 1, -1); // List of if a node has been checked or not and a pointer to where in checked they are // Add one to length so a ghost node can be used
+	var checkedMaster = array_create(array_length(nbpNodes) + 1, -1); // List of if a node has been checked or not and a pointer to where in checked they are // Add one to length so a ghost node can be used
 	
 	var finalNode = -1; // Whether or not the _endNode was found
 	
-	while (toCheckLength > 0 && finalNode = -1){ // Loop until all nodes have been checked or the _endNode was found
+	while (toCheckLength > 0 && finalNode = -1){ // Loop until all nbpNodes have been checked or the _endNode was found
 		
 		// Remove an entry from toCheck and put it in currentCheck
 		toCheckLength --;
@@ -32,11 +32,11 @@ function path_a_star(_startNode, _endNode){ // Function for finding the fastest 
 		
 		for (var i = array_length(node.visibleNodes) - 1; i >= 0; i --){ // Loop through each visible node
 			
-			var targetNodePointer = node.visibleNodes[i]; // Set this nodes pointer
+			var targetNodePointer = node.visibleNodes[i]; // Set this nbpNodes pointer
 			
 			if (checkedMaster[targetNodePointer] != -1)continue; // Skip if this node is already in the masterlist
 			
-			var targetNode = nodes[targetNodePointer]; // Store the targetNode id
+			var targetNode = nbpNodes[targetNodePointer]; // Store the targetNode id
 			
 			checkedMaster[targetNodePointer] = -2; // Reserve the spot in the master list
 			
@@ -45,7 +45,7 @@ function path_a_star(_startNode, _endNode){ // Function for finding the fastest 
 			
 			var heuristic = crowFromStart + crowToEnd; // The rating of this node being picked (lower better)
 			
-			var newEntry = [targetNode, targetNodePointer, checkedLength, crowFromStart, heuristic]; // All the nodes data congregated in one place
+			var newEntry = [targetNode, targetNodePointer, checkedLength, crowFromStart, heuristic]; // All the nbpNodes data congregated in one place
 			
 			// Insert new entry into an array starting from the top down based on the heuristic
 			for (var j = toCheckLength; j > 0; j --){ // Repeat up to the length of the array
@@ -70,7 +70,7 @@ function path_a_star(_startNode, _endNode){ // Function for finding the fastest 
 		var currentNode = finalNode;
 		
 		while (currentNode[2] != -1){
-			path[pathLength] = [currentNode[0], 0, 0]; // Add the nodes Id to the path and the x and y offs
+			path[pathLength] = [currentNode[0], 0, 0]; // Add the nbpNodes Id to the path and the x and y offs
 			pathLength ++;
 			currentNode = checked[currentNode[2]];
 		}

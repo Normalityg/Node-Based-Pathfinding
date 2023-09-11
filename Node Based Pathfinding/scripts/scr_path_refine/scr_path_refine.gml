@@ -1,6 +1,6 @@
-function path_refine(_path, _iterations, _refinePercent = 0.1){ // Function to smooth a path WARNING This does not use complexNodes as its collision and will end up have no space between the collisions
+function path_refine(_path, _iterations, _refinePercent = 0.1){ // Function to smooth a path WARNING This does not use nbpComplexNodes as its collision and will end up have no space between the collisions
 	
-	if (array_length(_path) <= 2)return; // Return if there are not enough nodes
+	if (array_length(_path) <= 2)return; // Return if there are not enough nbpNodes
 	
 	var failed = array_create(array_length(_path) - 2); // Array for not calculation something that is proven to fail
 	
@@ -31,7 +31,7 @@ function path_refine(_path, _iterations, _refinePercent = 0.1){ // Function to s
 			var finalPointY = thisPointCalcedY + pointDifferenceY;
 			
 			// Move a percent of the way to the target points and if there is no collision save the offset
-			if (!collision_line(finalPointX, finalPointY, lastPoint[0].x + lastPoint[1], lastPoint[0].y + lastPoint[2], nodeCollision,true,true) && !collision_line(finalPointX, finalPointY, nextPoint[0].x + nextPoint[1], nextPoint[0].y + nextPoint[2], nodeCollision,true,true)){
+			if (!collision_line(finalPointX, finalPointY, lastPoint[0].x + lastPoint[1], lastPoint[0].y + lastPoint[2], nbpCollision,true,true) && !collision_line(finalPointX, finalPointY, nextPoint[0].x + nextPoint[1], nextPoint[0].y + nextPoint[2], nbpCollision,true,true)){
 				thisPoint[1] += pointDifferenceX; 
 				thisPoint[2] += pointDifferenceY; 
 				continue;

@@ -1,7 +1,7 @@
 function pathfinder_set(){
 	// Create variables in the pathfinder
 	with(other){
-		targetNode = obj_mouse.id; // The node that is being pathed to
+		targetNode = -1; // The node that is being pathed to
 		
 		currentNode = -1; // Curent node being traveled to [node, xOffset, yOffset]
 		
@@ -9,8 +9,8 @@ function pathfinder_set(){
 		movementX = x; // Start going to self x
 		movementY = y; // Start going to self y
 		
-		pathTimer = 5; // Timer that when hits zero recalculates path
-		path = []; // List of nodes decided by the pathfinding algorithm to reach the targetNode [node, xOffset, yOffset]
+		pathTimer = -1; // Timer that when hits zero recalculates path
+		path = []; // List of nbpNodes decided by the pathfinding algorithm to reach the targetNode [node, xOffset, yOffset]
 		pathProgress = -1; // How far into the nodePath array the currentNode is
 		
 		nodeRange = 32; // Number of pixels distance from a node for the pathfinder to move onto the next node

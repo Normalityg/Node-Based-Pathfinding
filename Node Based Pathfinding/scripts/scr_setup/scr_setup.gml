@@ -1,19 +1,20 @@
+// Macros
+#macro nbpNodes global.nbpNodesList
+#macro nbpDebug global.nbpFlagDebug
+#macro nbpMakeNBake global.nbpFlagBakeNewNodes
+#macro nbpComplexNodes global.nbpFlagComplexNodeVisibility
+#macro nbpNodeDistance global.nbpMaxNodeDistance
+
+#macro nbpCollision obj_wall // Replace this with the asset(s) you want the nbpNodes to not make connections through
+
 function setup(){ // Has necesary variables
-	// Macros
-	#macro nodes global.pathfindingNodes
-	#macro debug global.nodeDebug
-	#macro makeBake global.nodeMakeBake
-	#macro complexNodes global.complexNodeVisibility
-	#macro nodeDistance global.maxNodeDistance
 	
-	#macro nodeCollision obj_wall // Replace this with the object(s) you want the nodes to not make connections through
+	// Create variables that the nbpNodes and pathfinders need to work
+	nbpDebug = false;
+	nbpMakeNBake = true;
+	nbpComplexNodes = true;
+	nbpNodeDistance = 512;
 	
-	// Create variables that the nodes and pathfinders need to work
-	debug = false;
-	makeBake = true;
-	complexNodes = true;
-	nodeDistance = 256;
-	
-	
-	nodes = [];
+	// Set the array of nodes to empty
+	nbpNodes = [];
 }

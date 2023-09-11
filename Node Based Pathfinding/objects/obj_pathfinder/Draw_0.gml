@@ -6,7 +6,7 @@ pathfinder_debug_draw();
 //
 //var startTime = get_timer();
 //
-//pathfind_refine(path, 4, 0.1);
+//path_refine(path, 4, 0.1);
 //
 //var timeTaken = get_timer() - startTime;
 //draw_text(12,12,"Time taken " + string(timeTaken) + " microseconds");

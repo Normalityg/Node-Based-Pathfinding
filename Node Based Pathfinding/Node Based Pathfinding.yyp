@@ -46,7 +46,6 @@
     {"id":{"name":"scr_path_a_star","path":"scripts/scr_path_a_star/scr_path_a_star.yy",},},
     {"id":{"name":"scr_node_baking","path":"scripts/scr_node_baking/scr_node_baking.yy",},},
     {"id":{"name":"scr_node_status","path":"scripts/scr_node_status/scr_node_status.yy",},},
-    {"id":{"name":"scr_node_moving","path":"scripts/scr_node_moving/scr_node_moving.yy",},},
     {"id":{"name":"scr_pathfinder_step","path":"scripts/scr_pathfinder_step/scr_pathfinder_step.yy",},},
     {"id":{"name":"scr_pathfinder_status","path":"scripts/scr_pathfinder_status/scr_pathfinder_status.yy",},},
     {"id":{"name":"scr_path_refine","path":"scripts/scr_path_refine/scr_path_refine.yy",},},

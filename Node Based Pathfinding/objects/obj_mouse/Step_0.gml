@@ -3,4 +3,4 @@
 x = mouse_x;
 y = mouse_y;
 
-node_moving_moved();
+node_moved();
