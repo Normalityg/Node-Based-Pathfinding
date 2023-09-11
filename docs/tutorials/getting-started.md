@@ -77,4 +77,4 @@ Another thing you might have noticed is the pathfinder sometimes gets caught on 
 
 Yup you only to remember a few variables and it handles everything for you!
 
-If you want to dive more into how everything works check out the [documentation](/!general-info.md) and most of the code is well (over) commented so that could be helpful too.
+If you want to dive more into how everything works check out the [documentation](/docs/!general-info.md) and most of the code is well (over) commented so that could be helpful too.

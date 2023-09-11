@@ -12,32 +12,32 @@ For those who are going to read what I wrote I use *list* and *array* interchang
 
 ### General
 
-- [Macros](/macros.md)
-- [setup()](/setup.md)
-- [debug_toggle()](/debug-toggle.md)
+- [Macros](/docs/macros.md)
+- [setup()](/docs/setup.md)
+- [debug_toggle()](/docs/debug-toggle.md)
 
 ### Node specific functions
 
-- [node_set()](/node-set.md) 
-- [node_delete()](/node-delete.md) 
-- [node_moved()](/node-moved.md) 
-- [node_radius_find(node,[maxRadius],[steps])](/node-radius-find.md) 
+- [node_set()](/docs/node-set.md) 
+- [node_delete()](/docs/node-delete.md) 
+- [node_moved()](/docs/node-moved.md) 
+- [node_radius_find(node,[maxRadius],[steps])](/docs/node-radius-find.md) 
 
-- [node_bake(_node)](/node-bake.md) 
-- [node_bake_ghost(_node)](/node-bake-ghost.md) 
-- [node_bake_all()](/node-bake-all.md) 
-- [node_unbake(_node)](/node-unbake.md) 
+- [node_bake(_node)](/docs/node-bake.md) 
+- [node_bake_ghost(_node)](/docs/node-bake-ghost.md) 
+- [node_bake_all()](/docs/node-bake-all.md) 
+- [node_unbake(_node)](/docs/node-unbake.md) 
 
-- [node_debug_draw()](/node-debug-draw.md) 
+- [node_debug_draw()](/docs/node-debug-draw.md) 
 
 ### Pathfinder specific functions
 
-- [pathfinder_set()](/pathfinder-set.md) 
-- [pathfinder_step()](/pathfinder-step.md) 
+- [pathfinder_set()](/docs/pathfinder-set.md) 
+- [pathfinder_step()](/docs/pathfinder-step.md) 
 
-- [pathfinder_debug_draw()](/pathfinder-debug-draw.md) 
+- [pathfinder_debug_draw()](/docs/pathfinder-debug-draw.md) 
 
 ### Path functions
 
-- [path_a_star(startNode,endNode)](/path-a-star.md) 
-- [path_refine(path,iterations,[refinePercent])](/path-refine.md) 
+- [path_a_star(startNode,endNode)](/docs/path-a-star.md) 
+- [path_refine(path,iterations,[refinePercent])](/docs/path-refine.md) 
