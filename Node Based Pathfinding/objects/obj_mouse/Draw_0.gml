@@ -1,1 +1,1 @@
-node_debug_draw();
+nbp_node_debug_draw();

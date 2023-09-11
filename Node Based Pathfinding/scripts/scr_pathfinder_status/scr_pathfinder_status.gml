@@ -1,4 +1,4 @@
-function pathfinder_set(){
+function nbp_pathfinder_set(){
 	// Create variables in the pathfinder
 	with(other){
 		targetNode = -1; // The node that is being pathed to

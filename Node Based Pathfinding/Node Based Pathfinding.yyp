@@ -26,6 +26,7 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Sprites","folderPath":"folders/Sprites.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Tile Sets","folderPath":"folders/Tile Sets.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Timelines","folderPath":"folders/Timelines.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"nbp_scripts","folderPath":"folders/Scripts/nbp_scripts.yy",},
   ],
   "IncludedFiles": [],
   "isEcma": false,
@@ -41,6 +42,7 @@
     {"id":{"name":"obj_mouse","path":"objects/obj_mouse/obj_mouse.yy",},},
     {"id":{"name":"Sprite1","path":"sprites/Sprite1/Sprite1.yy",},},
     {"id":{"name":"scr_node_radius_find","path":"scripts/scr_node_radius_find/scr_node_radius_find.yy",},},
+    {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
     {"id":{"name":"obj_control","path":"objects/obj_control/obj_control.yy",},},
     {"id":{"name":"obj_pathfinder","path":"objects/obj_pathfinder/obj_pathfinder.yy",},},
     {"id":{"name":"scr_path_a_star","path":"scripts/scr_path_a_star/scr_path_a_star.yy",},},
@@ -49,7 +51,6 @@
     {"id":{"name":"scr_pathfinder_step","path":"scripts/scr_pathfinder_step/scr_pathfinder_step.yy",},},
     {"id":{"name":"scr_pathfinder_status","path":"scripts/scr_pathfinder_status/scr_pathfinder_status.yy",},},
     {"id":{"name":"scr_path_refine","path":"scripts/scr_path_refine/scr_path_refine.yy",},},
-    {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
   ],
   "RoomOrderNodes": [
     {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},

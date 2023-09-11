@@ -1,4 +1,4 @@
-function path_refine(_path, _iterations, _refinePercent = 0.1){ // Function to smooth a path WARNING This does not use nbpComplexNodes as its collision and will end up have no space between the collisions
+function nbp_path_refine(_path, _iterations, _refinePercent = 0.1){ // Function to smooth a path WARNING This does not use nbpComplexNodes as its collision and will end up having no space between the path and walls
 	
 	if (array_length(_path) <= 2)return; // Return if there are not enough nbpNodes
 	

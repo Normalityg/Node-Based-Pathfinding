@@ -1,4 +1,4 @@
-function node_radius_find(_node, _maxRadius = 128, _steps = 16){ // Finds a nbpNodes radius of space without collisions
+function nbp_node_radius_find(_node, _maxRadius = 128, _steps = 16){ // Finds a nbpNodes radius of space without collisions
 	// Create variables
 	var currentRadius = 0;
 	var stepIncrease = _maxRadius / _steps; // How much the radius should increase at each step

@@ -1,4 +1,9 @@
-function path_a_star(_startNode, _endNode){ // Function for finding the fastest way between two nbpNodes (sometimes makes very slight pathing mistakes but not worth the perfomance loss)
+function nbp_path_a_star(_startNode, _endNode){ // Function for finding the fastest way between two nbpNodes (sometimes makes very slight pathing mistakes but not worth the perfomance loss)
+	
+	// If the endNode is unreachable from any location return a failed pathfind
+	if (_endNode.blocked = true){
+		return(false);
+	}
 	
 	var checked = []; // Array of already checked nbpNodes
 	var checkedLength = -1; // It gets added to before its used so it technically starts a 0

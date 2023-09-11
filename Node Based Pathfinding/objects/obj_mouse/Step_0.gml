@@ -3,4 +3,4 @@
 x = mouse_x;
 y = mouse_y;
 
-node_moved();
+nbp_node_moved();
