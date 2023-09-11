@@ -11,7 +11,7 @@
 function nbp_setup(){ // Has necesary variables
 	
 	// Create variables that the nbpNodes and pathfinders need to work
-	nbpDebug = false;
+	nbpDebug = true;
 	nbpDebugComplex = false;
 	nbpMakeNBake = true;
 	nbpComplexNodes = true;
