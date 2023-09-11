@@ -5,6 +5,8 @@ function debug_toggle(){ // Enables and disables the nbpDebug mode
 function node_debug_draw(){ // Draw node information
 	if (nbpDebug){ // Check if nbpDebug has been turned on
 		with(other){
+			// Create an empty array for drawing complexNodes
+			if (nbpComplexNodes)var vecToTarget = [0,0];
 			// Draw a line half way to all of its visibleNodes
 			for (var i = array_length(visibleNodes) - 1; i >= 0; i --){ 
 				
@@ -15,16 +17,18 @@ function node_debug_draw(){ // Draw node information
 				if (nbpComplexNodes){ // Radius's connection lines
 					// Get unit circle pointed at target node
 					var directionToTarget = point_direction(x,y,targetNode.x,targetNode.y);
-					var vecToTarget = [dcos(directionToTarget), -dsin(directionToTarget)];
+					vecToTarget[0] = dcos(directionToTarget); 
+					vecToTarget[1] = -dsin(directionToTarget);
 					// This nbpNodes radius coords
-					var thisLeftLineX = x + -vecToTarget[1] * nodeRadius, thisLeftLineY  = y + vecToTarget[0] * nodeRadius; // Left line
-					var thisRightLineX = x + vecToTarget[1] * nodeRadius, thisRightLineY = y + -vecToTarget[0] * nodeRadius; // Right line
+					var thisLeftLineX = -vecToTarget[1] * nodeRadius, thisLeftLineY  = vecToTarget[0] * nodeRadius; // Left line vec from 0,0
+					var thisRightLineX = x - thisLeftLineX, thisRightLineY = y - thisLeftLineY; // Reverse the left line vec and add position
 					// Target nbpNodes radius coords
-					var targetLeftLineX = targetNode.x + -vecToTarget[1] * targetNode.nodeRadius, targetLeftLineY  = targetNode.y + vecToTarget[0] * targetNode.nodeRadius; // Left line
-					var targetRightLineX = targetNode.x + vecToTarget[1] * targetNode.nodeRadius, targetRightLineY = targetNode.y + -vecToTarget[0] * targetNode.nodeRadius; // Right line
+					var targetLeftLineX = -vecToTarget[1] * targetNode.nodeRadius, targetLeftLineY  = vecToTarget[0] * targetNode.nodeRadius; // left line vec from 0,0
+					var targetRightLineX = x - targetLeftLineX, targetRightLineY = y - targetLeftLineY; // Reverse the left line vec and add position
+					
 					
 					// Draw lines from the edges of this node's radius to the edges of targetNode's radius
-					draw_line_color(thisLeftLineX, thisLeftLineY, targetLeftLineX, targetLeftLineY, c_blue,c_blue);
+					draw_line_color(x + thisLeftLineX, y + thisLeftLineY, targetNode.x + targetLeftLineX, targetNode.y + targetLeftLineY, c_blue,c_blue);
 					draw_line_color(thisRightLineX, thisRightLineY, targetRightLineX, targetRightLineY, c_blue,c_blue);
 				}
 			}

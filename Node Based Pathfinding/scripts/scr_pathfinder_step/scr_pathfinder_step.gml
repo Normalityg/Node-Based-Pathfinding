@@ -42,7 +42,27 @@ function pathfinder_step(){ // Code that runs during a pathfinders step event
 				if (chasingTarget)pathTimer = irandom_range(0,4);
 			}
 			else if (!chasingTarget && point_distance(x, y, path[0][0].x + path[0][1], path[0][0].y + path[0][2]) < nbpNodeDistance){ // Otherwise the targetNode is visible and in range check the switch to the last node in the path
-				////////////////////// HERE ADD COMPLEX COLLISIONS AND TRIG
+				var canSeeTarget = !nbpComplexNodes; // If complexNodes is enabled it isnt sure it can see yet
+				
+				if (nbpComplexNodes){ // Check from the edge of the sprite
+					// Get the distance to the closest collidable
+					var nodeRadius = node_radius_find(self) * 2;
+					// Get unit circle pointed at target node
+					var directionToTarget = point_direction(x,y,targetNode.x,targetNode.y);
+					var vecToTarget = [dcos(directionToTarget), -dsin(directionToTarget)];
+					// This nbpNodes radius coords
+					var thisLeftLineX = -vecToTarget[1] * nodeRadius, thisLeftLineY  = vecToTarget[0] * nodeRadius; // left line vec from 0,0
+					var thisRightLineX = (x) - thisLeftLineX, thisRightLineY = (y) - thisLeftLineY; // Reverse the left line vec and add position
+					// Target nbpNodes radius coords
+					var targetLeftLineX = -vecToTarget[1] * targetNode.nodeRadius, targetLeftLineY  = vecToTarget[0] * targetNode.nodeRadius; // left line vec from 0,0
+					var targetRightLineX = (targetNode.x) - targetLeftLineX, targetRightLineY = (targetNode.y) - targetLeftLineY; // Reverse the left line vec and add position
+					
+					// If either line is blocked dont add visibility
+					if (!collision_line(x + thisLeftLineX, y + thisLeftLineY, targetNode.x + targetLeftLineX, targetNode.y + targetLeftLineY,nbpCollision,true,true) && !collision_line(thisRightLineX, thisRightLineY, targetRightLineX, targetRightLineY,nbpCollision,true,true))canSeeTarget = true;
+					
+				}
+				
+				if (canSeeTarget){
 					pathProgress = 0; // Set path progress to last node
 					
 					chasingTarget = true; // Set chasing target

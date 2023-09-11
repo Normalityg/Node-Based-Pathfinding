@@ -4,10 +4,16 @@ function node_bake(_node){ // Function for adding new nbpNodes into an already b
 	thisNode.visibleNodes = []; // Clear visibleNodes
 	var visibleNodeLength = 0; // Track length of visibleNodes
 	
+	// Empty array for complexNodes collision check
+	if (nbpComplexNodes)var vecToTarget = [0,0];
+	
 	for (var i = array_length(nbpNodes) - 1; i >= 0; i --){ // Loop through all nbpNodes to check if they are visible
 		
 		var targetNode = nbpNodes[i]; // Node being checked for visibility
 		
+				//var thisRightLineX = (thisNode.x * 2) - thisLeftLineX, thisRightLineY = (thisNode.y * 2) - thisLeftLineY; 
+				//var targetRightLineX = (thisNode.x * 2) - targetLeftLineX, targetRightLineY = (thisNode.y * 2) - targetLeftLineY; 
+				
 		if (nbpNodeDistance < point_distance(thisNode.x,thisNode.y,targetNode.x,targetNode.y))continue; // If the node is further than the max distance dont add
 		
 		// Check if there is line of sight between the two nbpNodes
@@ -15,16 +21,17 @@ function node_bake(_node){ // Function for adding new nbpNodes into an already b
 			if (nbpComplexNodes){ // Shoots two extra raycasts from the edges of each nbpNodes radius
 				// Get unit circle pointed at target node
 				var directionToTarget = point_direction(thisNode.x,thisNode.y,targetNode.x,targetNode.y);
-				var vecToTarget = [dcos(directionToTarget), -dsin(directionToTarget)];
+				vecToTarget[0] = dcos(directionToTarget); 
+				vecToTarget[1] = -dsin(directionToTarget);
 				// This nbpNodes radius coords
-				var thisLeftLineX = thisNode.x + -vecToTarget[1] * thisNode.nodeRadius, thisLeftLineY  = thisNode.y + vecToTarget[0] * thisNode.nodeRadius; // Left line
-				var thisRightLineX = thisNode.x + vecToTarget[1] * thisNode.nodeRadius, thisRightLineY = thisNode.y + -vecToTarget[0] * thisNode.nodeRadius; // Right line
+				var thisLeftLineX = -vecToTarget[1] * thisNode.nodeRadius, thisLeftLineY  = vecToTarget[0] * thisNode.nodeRadius; // Left line
+				var thisRightLineX = (thisNode.x) - thisLeftLineX, thisRightLineY = (thisNode.y) - thisLeftLineY; //var thisRightLineX = thisNode.x + vecToTarget[1] * thisNode.nodeRadius, thisRightLineY = thisNode.y + -vecToTarget[0] * thisNode.nodeRadius; // Right line
 				// Target nbpNodes radius coords
-				var targetLeftLineX = targetNode.x + -vecToTarget[1] * targetNode.nodeRadius, targetLeftLineY  = targetNode.y + vecToTarget[0] * targetNode.nodeRadius; // Left line
-				var targetRightLineX = targetNode.x + vecToTarget[1] * targetNode.nodeRadius, targetRightLineY = targetNode.y + -vecToTarget[0] * targetNode.nodeRadius; // Right line
+				var targetLeftLineX = -vecToTarget[1] * targetNode.nodeRadius, targetLeftLineY  = vecToTarget[0] * targetNode.nodeRadius; // Left line
+				var targetRightLineX = (targetNode.x) - targetLeftLineX, targetRightLineY = (targetNode.y) - targetLeftLineY; //var targetRightLineX = targetNode.x + vecToTarget[1] * targetNode.nodeRadius, targetRightLineY = targetNode.y + -vecToTarget[0] * targetNode.nodeRadius; // Right line
 				
 				// If either line is blocked dont add visibility
-				if (collision_line(thisLeftLineX, thisLeftLineY, targetLeftLineX, targetLeftLineY,nbpCollision,true,true) || collision_line(thisRightLineX, thisRightLineY, targetRightLineX, targetRightLineY,nbpCollision,true,true))continue;
+				if (collision_line(thisNode.x + thisLeftLineX, thisNode.y + thisLeftLineY, targetNode.x + targetLeftLineX, targetNode.y + targetLeftLineY,nbpCollision,true,true) || collision_line(thisRightLineX, thisRightLineY, targetRightLineX, targetRightLineY,nbpCollision,true,true))continue;
 				
 			}
 			
@@ -59,16 +66,17 @@ function node_bake_ghost(_node){ // Function for nbpNodes that only want to tap 
 			if (nbpComplexNodes){ // Shoots two extra raycasts from the edges of each nbpNodes radius
 				// Get unit circle pointed at target node
 				var directionToTarget = point_direction(thisNode.x,thisNode.y,targetNode.x,targetNode.y);
-				var vecToTarget = [dcos(directionToTarget), -dsin(directionToTarget)];
+				vecToTarget[0] = dcos(directionToTarget); 
+				vecToTarget[1] = -dsin(directionToTarget);
 				// This nbpNodes radius coords
-				var thisLeftLineX = thisNode.x + -vecToTarget[1] * thisNode.nodeRadius, thisLeftLineY  = thisNode.y + vecToTarget[0] * thisNode.nodeRadius; // Left line
-				var thisRightLineX = thisNode.x + vecToTarget[1] * thisNode.nodeRadius, thisRightLineY = thisNode.y + -vecToTarget[0] * thisNode.nodeRadius; // Right line
+				var thisLeftLineX = -vecToTarget[1] * thisNode.nodeRadius, thisLeftLineY  = vecToTarget[0] * thisNode.nodeRadius; // Left line vec from 0,0
+				var thisRightLineX = (thisNode.x) - thisLeftLineX, thisRightLineY = (thisNode.y) - thisLeftLineY; // Reverse the left line vec and add position
 				// Target nbpNodes radius coords
-				var targetLeftLineX = targetNode.x + -vecToTarget[1] * targetNode.nodeRadius, targetLeftLineY  = targetNode.y + vecToTarget[0] * targetNode.nodeRadius; // Left line
-				var targetRightLineX = targetNode.x + vecToTarget[1] * targetNode.nodeRadius, targetRightLineY = targetNode.y + -vecToTarget[0] * targetNode.nodeRadius; // Right line
+				var targetLeftLineX = -vecToTarget[1] * targetNode.nodeRadius, targetLeftLineY  = vecToTarget[0] * targetNode.nodeRadius; // left line vec from 0,0
+				var targetRightLineX = (targetNode.x) - targetLeftLineX, targetRightLineY = (targetNode.y) - targetLeftLineY; // Reverse the left line vec and add position
 				
 				// If either line is blocked dont add visibility
-				if (collision_line(thisLeftLineX, thisLeftLineY, targetLeftLineX, targetLeftLineY,nbpCollision,true,true) || collision_line(thisRightLineX, thisRightLineY, targetRightLineX, targetRightLineY,nbpCollision,true,true))continue;
+				if (collision_line(thisNode.x + thisLeftLineX, thisNode.y + thisLeftLineY, targetNode.x + targetLeftLineX, targetNode.y + targetLeftLineY,nbpCollision,true,true) || collision_line(thisRightLineX, thisRightLineY, targetRightLineX, targetRightLineY,nbpCollision,true,true))continue;
 				
 			}
 			
@@ -126,16 +134,18 @@ function node_bake_all(){ // Function for connecting all nbpNodes to eachother
 				if (nbpComplexNodes){ // Shoots two extra raycasts from the edges of each nbpNodes radius
 					// Get unit circle pointed at target node
 					var directionToTarget = point_direction(thisNode.x,thisNode.y,targetNode.x,targetNode.y);
-					var vecToTarget = [dcos(directionToTarget), -dsin(directionToTarget)];
+					vecToTarget[0] = dcos(directionToTarget); 
+					vecToTarget[1] = -dsin(directionToTarget);
 					// This nbpNodes radius coords
-					var thisLeftLineX = thisNode.x + -vecToTarget[1] * thisNode.nodeRadius, thisLeftLineY  = thisNode.y + vecToTarget[0] * thisNode.nodeRadius; // Left line
-					var thisRightLineX = thisNode.x + vecToTarget[1] * thisNode.nodeRadius, thisRightLineY = thisNode.y + -vecToTarget[0] * thisNode.nodeRadius; // Right line
+					var thisLeftLineX = -vecToTarget[1] * thisNode.nodeRadius, thisLeftLineY  = vecToTarget[0] * thisNode.nodeRadius; // Left line vec from 0,0
+					var thisRightLineX = (thisNode.x) - thisLeftLineX, thisRightLineY = (thisNode.y) - thisLeftLineY; // Reverse the left line vec and add position
 					// Target nbpNodes radius coords
-					var targetLeftLineX = targetNode.x + -vecToTarget[1] * targetNode.nodeRadius, targetLeftLineY  = targetNode.y + vecToTarget[0] * targetNode.nodeRadius; // Left line
-					var targetRightLineX = targetNode.x + vecToTarget[1] * targetNode.nodeRadius, targetRightLineY = targetNode.y + -vecToTarget[0] * targetNode.nodeRadius; // Right line
+					var targetLeftLineX = -vecToTarget[1] * targetNode.nodeRadius, targetLeftLineY  = vecToTarget[0] * targetNode.nodeRadius; // left line vec from 0,0
+					var targetRightLineX = (targetNode.x) - targetLeftLineX, targetRightLineY = (targetNode.y) - targetLeftLineY; // Reverse the left line vec and add position
 					
 					// If either line is blocked dont add visibility
-					if (collision_line(thisLeftLineX, thisLeftLineY, targetLeftLineX, targetLeftLineY,nbpCollision,true,true) || collision_line(thisRightLineX, thisRightLineY, targetRightLineX, targetRightLineY,nbpCollision,true,true))continue;
+					if (collision_line(thisNode.x + thisLeftLineX, thisNode.y + thisLeftLineY, targetNode.x + targetLeftLineX, targetNode.y + targetLeftLineY,nbpCollision,true,true) || collision_line(thisRightLineX, thisRightLineY, targetRightLineX, targetRightLineY,nbpCollision,true,true))continue;
+					
 				}
 				// Add node to thisNode's visibleNodes
 				thisNode.visibleNodes[visibleNodeLength] = j; // Add node to visibleNodes

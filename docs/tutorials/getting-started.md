@@ -71,4 +71,10 @@ These are some extra functionalities that the previous code if unable to do.
 
 If you have played around with the current state of the project you would probably have noticed that the pathfinders don't try to chase the mouse after they reach it. This can be fixed by putting the line of code `arrive = false;` into the create event, it will tell the pathfinder that it cannot arrive no matter how close it gets to the targetNode and to keep chasing it forever.
 
-Another thing you might have noticed is the pathfinder sometimes gets caught on the corners and cant figure out how to get around them. Don't fret for a variable exists just for this reason, the stuckTimer, it keeps track of how many frames its been since a new node has been reached. To try to find a new path when a pathfinder has been chasing a node for a hundred and twenty frames just write `if (stuckTimer >= 120)pathTimer = 0;`. This code will automatically try to find a new path after failing to reach the next node for two seconds.
+Another thing you might have noticed is the pathfinder sometimes gets caught on the corners and cant figure out how to get around them. While a lot of the code is dedicated to making this happen as few times as possible don't fret, for a variable exists just for this reason, the stuckTimer, it keeps track of how many frames its been since a new node has been reached. To try to find a new path when a pathfinder has been chasing a node for a hundred and twenty frames just write `if (stuckTimer >= 120)pathTimer = 0;`. This code will automagically try to find a new path after failing to reach the next node for two seconds.
+
+### Thats it?
+
+Yup you only to remember a few variables and it handles everything for you!
+
+If you want to dive more into how everything works check out the [documentation](/!general-info) and most of the code is well (over) commented so that could be helpful too.

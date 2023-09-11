@@ -12,4 +12,4 @@ It starts out by seeing if it needs to find a new path to its destination. If it
 
 ### And Following the current path
 
-Starting with checking if it has arrived to its goal yet if not, it checks three things, are the last two nodes on the path still in line of sight(not complex), if the target is the next node and is still in line of sight, and if the target's id has change. If any of those things are true it will find a new path. If everything is fine it will then see if the current node been reached then either check the next node in the path or arrive and stop pathing.
+Starting with checking if it has arrived to its goal yet if not, it checks four things, are the last two nodes on the path still in line of sight(not complex), if the target is the next node and is still in line of sight, if the target is visible and in range (complex supported), and if the target's id has change. If any of those things are true it will find a new path. If everything is fine it will then see if the current node been reached then either check the next node in the path or arrive and stop pathing.
