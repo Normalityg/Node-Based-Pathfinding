@@ -1,6 +1,6 @@
 # pathfinder_step()
 
-This function runs all the pathfinding code for the pathfinder and keeps track of [useful variables](/pathfinder-set).
+This function runs all the pathfinding code for the pathfinder and keeps track of [useful variables](/pathfinder-set.md).
 
 ## The function is split into two sections
 

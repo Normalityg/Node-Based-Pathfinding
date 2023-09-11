@@ -1,6 +1,6 @@
 # Macros
 
-The macros can be found and modified in [setup()](/setup) script.
+The macros can be found and modified in [setup()](/setup.md) script.
 
 - nbpNodes: An array of all nodes currently active in the network
 - nbpDebug: Flag for if debug view should be on
