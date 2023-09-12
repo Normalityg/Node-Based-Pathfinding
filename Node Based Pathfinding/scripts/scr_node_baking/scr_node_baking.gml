@@ -114,7 +114,7 @@ function nbp_node_unbake(_node){ // Function for removing a node from other nbpN
 		
 	}
 	
-	_node.visibleNodes = []; // Empty visibleNodes of contents
+	thisNode.visibleNodes = []; // Empty visibleNodes of contents
 }
 
 function nbp_node_bake_all(){ // Function for connecting all nbpNodes to eachother

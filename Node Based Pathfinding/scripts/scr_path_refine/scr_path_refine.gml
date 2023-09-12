@@ -2,7 +2,8 @@ function nbp_path_refine(_path, _iterations, _refinePercent = 0.1){ // Function 
 	
 	if (array_length(_path) <= 2)return; // Return if there are not enough nbpNodes
 	
-	var failed = array_create(array_length(_path) - 2); // Array for not calculation something that is proven to fail
+	var failed = []; // Array for not calculation something that is proven to fail
+	failed[array_length(_path) - 2] = 0; // Populate array
 	
 	repeat(_iterations){
 		

@@ -37,10 +37,10 @@ function nbp_pathfinder_step(){ // Code that runs during a pathfinders step even
 			stuckTime ++;
 			
 			// If something is blocking the target and the last node recalc the path in the next few frames
-			if (pathTimer = -1 && array_length(path) >= 2)if (collision_line(path[0][0].x + path[0][1], path[0][0].y + path[0][2], path[1][0].x + path[1][1], path[1][0].y + path[1][2], nbpCollision, true, true))pathTimer = irandom_range(0,3);
+			if (pathTimer = -1 && array_length(path) >= 2)if (collision_line(path[0][0].x + path[0][1], path[0][0].y + path[0][2], path[1][0].x + path[1][1], path[1][0].y + path[1][2], nbpCollision, true, true))pathTimer = irandom_range(0,10);
 			
 			if (collision_line(x, y, path[0][0].x + path[0][1], path[0][0].y + path[0][2], nbpCollision, true, true)){ // If something is blocking the pathfinder from the targetNode
-				if (pathTimer = -1 && chasingTarget)pathTimer = irandom_range(0,3);
+				if (pathTimer = -1 && chasingTarget)pathTimer = irandom_range(0,10);
 			}
 			else if (!chasingTarget && point_distance(x, y, path[0][0].x + path[0][1], path[0][0].y + path[0][2]) < nbpNodeDistance){ // Otherwise the targetNode is visible and in range check the switch to the last node in the path
 				var canSeeTarget = !nbpComplexNodes; // If complexNodes is enabled it isnt sure it can see yet

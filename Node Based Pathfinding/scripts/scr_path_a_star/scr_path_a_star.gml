@@ -6,11 +6,12 @@ function nbp_path_a_star(_startNode, _endNode){ // Function for finding the fast
 	}
 	
 	var checked = []; // Array of already checked nbpNodes
-	var checkedLength = -1; // It gets added to before its used so it technically starts a 0
+	var checkedLength = 0; // It gets added to before its used so it technically starts at 1
 	var toCheck = [[_startNode, _startNode.nodesPointer, -1, 0, 0, 0]]; // Array of nbpNodes needing to be checked [nodeId, nodesPointer, lastNode, distanceFromStart, heuristic]
 	var toCheckLength = 1;
 	
-	var checkedMaster = array_create(array_length(nbpNodes) + 1, -1); // List of if a node has been checked or not and a pointer to where in checked they are // Add one to length so a ghost node can be used
+	var checkedMaster = []; // List of if a node has been checked or not and a pointer to where in checked they are. Has 2 extra spaces because all entries are oen higher than their nodesPointer
+	checkedMaster[array_length(nbpNodes) + 2] = 0; // Fill master list with 
 	
 	var finalNode = -1; // Whether or not the _endNode was found
 	
@@ -39,14 +40,14 @@ function nbp_path_a_star(_startNode, _endNode){ // Function for finding the fast
 			
 			var targetNodePointer = node.visibleNodes[i]; // Set this nbpNodes pointer
 			
-			if (checkedMaster[targetNodePointer] != -1)continue; // Skip if this node is already in the masterlist
+			if (checkedMaster[targetNodePointer] != 0)continue; // Skip if this node is already in the masterlist
 			
 			var targetNode = nbpNodes[targetNodePointer]; // Store the targetNode id
 			
 			checkedMaster[targetNodePointer] = -2; // Reserve the spot in the master list
 			
-			var crowFromStart = currentCheck[3] + sqrt(sqr(targetNode.x - node.x) + sqr(targetNode.y - node.y)); // Total distance from start
-			var crowToEnd = sqrt(sqr(_endNode.x - targetNode.x) + sqr(_endNode.y - targetNode.y)); // Distance directly to the end
+			var crowFromStart = currentCheck[3] + sqrt((targetNode.x - node.x) * (targetNode.x - node.x) + (targetNode.y - node.y) * (targetNode.y - node.y)); // Total distance from start
+			var crowToEnd = sqrt((_endNode.x - targetNode.x) * (_endNode.x - targetNode.x) + (_endNode.y - targetNode.y) * (_endNode.y - targetNode.y)); // Distance directly to the end
 			
 			var heuristic = crowFromStart + crowToEnd; // The rating of this node being picked (lower better)
 			
@@ -54,7 +55,7 @@ function nbp_path_a_star(_startNode, _endNode){ // Function for finding the fast
 			
 			// Insert new entry into an array starting from the top down based on the heuristic
 			for (var j = toCheckLength; j > 0; j --){ // Repeat up to the length of the array
-				if (toCheck[j - 1][4] < newEntry[4]){ // Compare this and the next entry on who has a lower heuristic
+				if (toCheck[j - 1][4] < heuristic){ // Compare this and the next entry on who has a lower heuristic
 					toCheck[j] = toCheck[j - 1]; // Shift old entry up if the new entry has a higher heuristic
 				}
 				else {
