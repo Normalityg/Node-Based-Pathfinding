@@ -10,41 +10,44 @@ function nbp_node_set(){ // Function to start tracking and treating the object a
 		nbpNodes[nodesPointer] = id;
 		
 		// Variable creation
-		nodeRadius = nbp_node_radius_find(self); // Set radius of clear space for node
+		nodeRadius = nbp_node_radius_find(id); // Set radius of clear space for node
 		
 		visibleNodes = []; // List of all nbpNodes this node has line of sight to
 		if (nbpMakeNBake){ // If make and bake is on bake this node on make
-			nbp_node_bake(self);
+			nbp_node_bake(id);
 		}
 		
 	}
 }
 
-function nbp_node_delete(){ // Function to delete a node
-	with(other){
+function nbp_node_delete(_nodePointer){ // Function to delete a node
+	
+	var nodes = nbpNodes;
+	var nodesLength = array_length(nodes) - 1;
+	
+	nbp_node_unbake(nodes[_nodePointer]) // Unbake the node
+	
+	var replacementNode = nodes[nodesLength]; // Node to replace the current one with
+	
+	if (replacementNode = id){ // If the node is the last entry in the array just resize the array and destroy
 		
-		nbp_node_unbake(self) // Unbake the node
+		array_resize(nodes, nodesLength); // Resize the nbpNodes array
 		
-		var replacementNode = nbpNodes[array_length(nbpNodes) - 1]; // Node the replace the current one with
-		
-		if (replacementNode = self){ // If the node is the last entry in the array just resize the array and destroy
-			
-			array_resize(nbpNodes, array_length(nbpNodes) - 1) // Resize the nbpNodes array
-			
-			instance_destroy();
-		}
-		nbp_node_unbake(replacementNode) // Unbake the replacementNode
-		
-		nbpNodes[nodesPointer] = replacementNode; // Replace the deleted node with the last entry
-		replacementNode.nodesPointer = nodesPointer; // Change its pointer to the new location
-		
-		array_resize(nbpNodes, array_length(nbpNodes) - 1) // Resize the nbpNodes array
-		
-		nbp_node_bake(replacementNode) // Rebake the displaced node
-		
-		instance_destroy(); // Destroy instance after displacing the last node
-		
+		return;
 	}
+	
+	nbp_node_unbake(replacementNode); // Unbake the replacementNode
+	
+	//show_debug_message("First " + string(replacementNode.nodesPointer));
+	replacementNode.nodesPointer = _nodePointer; // Change its pointer to the new location
+	nodes[_nodePointer] = replacementNode; // Replace the deleted node with the last entry
+	//show_debug_message("Second " + string(replacementNode.nodesPointer));
+	array_resize(nodes, nodesLength); // Resize the nbpNodes array
+	
+	nbp_node_bake(replacementNode) // Rebake the displaced node
+	
+	//instance_destroy(); // Destroy instance after displacing the last node
+	
 }
 
 function nbp_node_moved(){ // Rebakes the node when after it moves

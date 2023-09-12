@@ -325,8 +325,6 @@
     {"name":"inst_363627B9","path":"rooms/Room1/Room1.yy",},
     {"name":"inst_2A93FB51","path":"rooms/Room1/Room1.yy",},
     {"name":"inst_57B2FA0C","path":"rooms/Room1/Room1.yy",},
-    {"name":"inst_337906F3","path":"rooms/Room1/Room1.yy",},
-    {"name":"inst_352DADB0","path":"rooms/Room1/Room1.yy",},
     {"name":"inst_479B0F36","path":"rooms/Room1/Room1.yy",},
     {"name":"inst_6CD6D9B6","path":"rooms/Room1/Room1.yy",},
     {"name":"inst_1A476570","path":"rooms/Room1/Room1.yy",},
@@ -342,6 +340,8 @@
     {"name":"inst_49D74D60","path":"rooms/Room1/Room1.yy",},
     {"name":"inst_2BBF11A6","path":"rooms/Room1/Room1.yy",},
     {"name":"inst_5733306C","path":"rooms/Room1/Room1.yy",},
+    {"name":"inst_337906F3","path":"rooms/Room1/Room1.yy",},
+    {"name":"inst_352DADB0","path":"rooms/Room1/Room1.yy",},
   ],
   "isDnd": false,
   "layers": [

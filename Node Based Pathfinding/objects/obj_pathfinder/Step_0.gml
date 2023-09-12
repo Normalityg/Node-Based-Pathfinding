@@ -5,6 +5,7 @@ if (global.randomNode){ // Logic for pathfinding behaviour before the pathfinder
 		arrive = true; // Arrive to the target node (does not need to be set each time)
 		
 		targetNode = nbpNodes[irandom_range(0, array_length(nbpNodes) - 1)]; // Target is set to a random node
+		show_debug_message(nbpNodes);
 		pathTimer = 0;
 	}
 	

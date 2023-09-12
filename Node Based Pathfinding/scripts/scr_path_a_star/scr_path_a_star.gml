@@ -1,7 +1,7 @@
 function nbp_path_a_star(_startNode, _endNode){ // Function for finding the fastest way between two nbpNodes (sometimes makes very slight pathing mistakes but not worth the perfomance loss)
 	
 	// If the endNode is unreachable from any location return a failed pathfind
-	if (_endNode.blocked = true){
+	if (array_length(_endNode.visibleNodes) = 0/*_endNode.blocked = true*/){
 		return(false);
 	}
 	
