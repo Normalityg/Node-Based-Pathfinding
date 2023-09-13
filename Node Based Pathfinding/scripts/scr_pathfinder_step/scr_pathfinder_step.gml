@@ -105,7 +105,7 @@ function nbp_pathfinder_step(){ // Code that runs during a pathfinders step even
 						return; // End the step for the path to be recalculated
 					}
 					currentNode = path[pathProgress]; // Set currentNode to the new node
-					show_debug_message(currentNode);
+					
 					stuckTime  = 0;// Reset stuckTime
 					
 					// Set chasingTarget flag when the next node is the target

@@ -45,12 +45,8 @@ function nbp_node_delete(_nodePointer){ // Function to delete a node
 	
 	nbp_node_unbake(replacementNode); // Unbake the replacementNode
 	
-	//var temptemp = _nodePointer;//show_debug_message("First " + string(replacementNode.nodesPointer));
-	
 	replacementNode.nodesPointer = _nodePointer; // Change its pointer to the new location
 	nodes[_nodePointer] = replacementNode; // Replace the deleted node with the last entry
-	
-	//if (temptemp != nodes[_nodePointer].nodesPointer)show_debug_message("GOD GODDOG DOG");//show_debug_message("Second " + string(replacementNode.nodesPointer));
 	
 	array_resize(nodes, nodesLength); // Resize the nbpNodes array
 	
