@@ -12,32 +12,33 @@ For those who are going to read what I wrote I use *list* and *array* interchang
 
 ### General
 
-- [Macros](/docs/macros.md)
-- [setup()](/docs/setup.md)
-- [debug_toggle()](/docs/debug-toggle.md)
+- [Macros](/docs/macros.md): macros that are used by Node Based Pathfinding
+- [setup()](/docs/setup.md): sets up variables for scripts.
+- [debug_toggle()](/docs/debug-toggle.md): swaps whether or not debug for nbp is on
 
 ### Node specific functions
 
-- [node_set()](/docs/node-set.md) 
-- [node_delete()](/docs/node-delete.md) 
-- [node_moved()](/docs/node-moved.md) 
-- [node_radius_find(node,[maxRadius],[steps])](/docs/node-radius-find.md) 
+- [node_set()](/docs/node-set.md): sets up node variables
+- [node_delete()](/docs/node-delete.md): removes a node from tracking
+- [node_exists(_pointer,_identity)](/docs/node-exists): checks if a node still exists
+- [node_moved()](/docs/node-moved.md): resets the node for a new position
+- [node_radius_find(node,[maxRadius],[steps])](/docs/node-radius-find.md): returns half the distance to the closest collibable
 
-- [node_bake(_node)](/docs/node-bake.md) 
-- [node_bake_ghost(_node)](/docs/node-bake-ghost.md) 
-- [node_bake_all()](/docs/node-bake-all.md) 
-- [node_unbake(_node)](/docs/node-unbake.md) 
+- [node_bake(_node)](/docs/node-bake.md): finds all the visible nodes in range and tells them it can see them
+- [node_bake_ghost(_node)](/docs/node-bake-ghost.md): finds all the visible nodes in range
+- [node_bake_all()](/docs/node-bake-all.md): reset all nodes visible nodes and then find all the nodes they can see
+- [node_unbake(_node)](/docs/node-unbake.md): tell all the nodes it can see that it cant see them anymore
 
-- [node_debug_draw()](/docs/node-debug-draw.md) 
+- [node_debug_draw()](/docs/node-debug-draw.md): goes in the nodes draw event if debugging or visualisations are needed
 
 ### Pathfinder specific functions
 
-- [pathfinder_set()](/docs/pathfinder-set.md) 
-- [pathfinder_step()](/docs/pathfinder-step.md) 
+- [pathfinder_set()](/docs/pathfinder-set.md): sets up pathfinder variables
+- [pathfinder_step()](/docs/pathfinder-step.md): runs code to handle the pathfinding
 
-- [pathfinder_debug_draw()](/docs/pathfinder-debug-draw.md) 
+- [pathfinder_debug_draw()](/docs/pathfinder-debug-draw.md): goes in the pathfinders draw event if debugging or visualisations are needed
 
 ### Path functions
 
-- [path_a_star(startNode,endNode)](/docs/path-a-star.md) 
-- [path_refine(path,iterations,[refinePercent])](/docs/path-refine.md) 
+- [path_a_star(startNode,endNode)](/docs/path-a-star.md): finds the fastest way from the startNode to the endNode using the node network
+- [path_refine(path,iterations,[refinePercent])](/docs/path-refine.md): shortens the distance needed to travel along a path BUT does not verify that the path is safe/navigable

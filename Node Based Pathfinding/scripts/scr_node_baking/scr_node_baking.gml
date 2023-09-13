@@ -4,7 +4,7 @@ function nbp_node_bake(_node){ // Function for adding new nbpNodes into an alrea
 	thisNode.visibleNodes = []; // Clear visibleNodes
 	var visibleNodeLength = 0; // Track length of visibleNodes
 	
-	var visibleNodeDistance = thisNode.maxDistance // Store the maxDistance of the node
+	var visibleNodeDistance = thisNode.nodeMaxDistance // Store the maxDistance of the node
 	
 	// Empty array for complexNodes collision checks
 	if (nbpComplexNodes)var vecToTarget = [0,0];
@@ -55,8 +55,8 @@ function nbp_node_bake_ghost(_node){ // Function for nbpNodes that only want to 
 	thisNode.visibleNodes = []; // Set visibleNodes
 	var visibleNodeLength = 0; // Track length of visibleNodes
 	
-	thisNode.maxDistance = nbpNodeDistance; // Set the ghost nodes maxDistance
-	var visibleNodeDistance = thisNode.maxDistance // Store the maxDistance of the node
+	thisNode.nodeMaxDistance = nbpNodeDistance; // Set the ghost nodes maxDistance
+	var visibleNodeDistance = thisNode.nodeMaxDistance // Store the maxDistance of the node
 	
 	thisNode.nodeRadius = nbp_node_radius_find(_node) * 2; // Double the ghosts radius to get the max radius
 	
@@ -142,7 +142,7 @@ function nbp_node_bake_all(){ // Function for connecting all nbpNodes to eachoth
 		thisNode.visibleNodes = []; // Clear visibleNodes
 		var visibleNodeLength = 0; // Track length of visibleNodes
 		
-		var visibleNodeDistance = thisNode.maxDistance // Store the maxDistance of the node
+		var visibleNodeDistance = thisNode.nodeMaxDistance // Store the maxDistance of the node
 	
 		for (var j = array_length(nbpNodes) - 1; j >= 0; j --){ // Loop through all nbpNodes to check if they are visible
 			

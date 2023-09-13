@@ -76,9 +76,10 @@ function nbp_path_a_star(_startNode, _endNode){ // Function for finding the fast
 		var currentNode = finalNode;
 		
 		while (currentNode[2] != -1){
-			path[pathLength] = [currentNode[0], 0, 0]; // Add the nbpNodes Id to the path and the x and y offs
+			path[pathLength] = [currentNode[0], 0, 0, currentNode[1], currentNode[0].nodeIdentity]; // Add the nbpNodes Id to the path and the x and y offs. Then the pointer and its identity
 			pathLength ++;
 			currentNode = checked[currentNode[2]];
+			
 		}
 		
 		path[pathLength] = currentNode; // Add the ghost at the end of the path

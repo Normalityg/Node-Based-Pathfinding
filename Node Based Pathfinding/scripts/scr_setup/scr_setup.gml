@@ -1,5 +1,6 @@
 // Macros
 #macro nbpNodes global.nbpNodesList
+#macro nbpNodeCount global.nbpTotalNumberOfNodes
 #macro nbpDebug global.nbpFlagDebug
 #macro nbpDebugComplex global.nbpFlagDebugComplex
 #macro nbpMakeNBake global.nbpFlagBakeNewNodes
@@ -10,7 +11,10 @@
 
 function nbp_setup(){ // Has necesary variables
 	
-	// Create variables that the nbpNodes and pathfinders need to work
+	// Set variables that should not be changed ever
+	nbpNodeCount = 0;
+	
+	// Create variables that the nbpNodes and pathfinders need to work that you can change
 	nbpDebug = false;
 	nbpDebugComplex = false;
 	nbpMakeNBake = true;

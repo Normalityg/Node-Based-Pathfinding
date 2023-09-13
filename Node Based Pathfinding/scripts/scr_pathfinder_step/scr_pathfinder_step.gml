@@ -14,7 +14,8 @@ function nbp_pathfinder_step(){ // Code that runs during a pathfinders step even
 			}
 			nbp_node_bake_ghost(ghostNode); // Lightly bake the ghost with no return pointers
 			
-			path = nbp_path_a_star(ghostNode, targetNode.id); // Pathfind from the ghostNode to the targetNode
+			path = nbp_path_a_star(ghostNode, targetNode); // Pathfind from the ghostNode to the targetNode
+			
 			if (path = false){ // If the path doesnt exist try again in a few frames
 				arrived = true; // Set so that other pathfinding code wont run until a successfu path is found
 				path = []; // Get rid of current path 
@@ -36,13 +37,19 @@ function nbp_pathfinder_step(){ // Code that runs during a pathfinders step even
 			// Add to the stuck time
 			stuckTime ++;
 			
+			// Check if the nodes pointer is an available pointer then check if that pointer is the same as the node in that pointer using its nodeIdentity
+			if (!nbp_node_exists(path[pathProgress][3],path[pathProgress][4])){ // Check if the current node's information is correct
+				pathTimer = 0;
+				return; // End the step for the path to be recalculated
+			}
+			
 			// If something is blocking the target and the last node recalc the path in the next few frames
-			if (pathTimer = -1 && array_length(path) >= 2)if (collision_line(path[0][0].x + path[0][1], path[0][0].y + path[0][2], path[1][0].x + path[1][1], path[1][0].y + path[1][2], nbpCollision, true, true))pathTimer = irandom_range(0,10);
+			if (pathTimer = -1 && array_length(path) >= 2 && nbp_node_exists(path[1][3],path[1][4]))if (collision_line(path[0][0].x + path[0][1], path[0][0].y + path[0][2], path[1][0].x + path[1][1], path[1][0].y + path[1][2], nbpCollision, true, true))pathTimer = irandom_range(0,10);
 			
 			if (collision_line(x, y, path[0][0].x + path[0][1], path[0][0].y + path[0][2], nbpCollision, true, true)){ // If something is blocking the pathfinder from the targetNode
 				if (pathTimer = -1 && chasingTarget)pathTimer = irandom_range(0,10);
 			}
-			else if (!chasingTarget && point_distance(x, y, path[0][0].x + path[0][1], path[0][0].y + path[0][2]) < path[0][0].maxDistance){ // Otherwise the targetNode is visible and in range check the switch to the last node in the path
+			else if (!chasingTarget && point_distance(x, y, path[0][0].x + path[0][1], path[0][0].y + path[0][2]) < path[0][0].nodeMaxDistance){ // Otherwise the targetNode is visible and in range check the switch to the last node in the path
 				var canSeeTarget = !nbpComplexNodes; // If complexNodes is enabled it isnt sure it can see yet
 				
 				if (nbpComplexNodes){ // Check from the edge of the sprite
@@ -93,8 +100,12 @@ function nbp_pathfinder_step(){ // Code that runs during a pathfinders step even
 				else{ // Everything as normal
 					pathProgress --;
 					
+					if (!nbp_node_exists(path[pathProgress][3],path[pathProgress][4])){ // Check if the next node's information is correct
+						pathTimer = 0;
+						return; // End the step for the path to be recalculated
+					}
 					currentNode = path[pathProgress]; // Set currentNode to the new node
-					
+					show_debug_message(currentNode);
 					stuckTime  = 0;// Reset stuckTime
 					
 					// Set chasingTarget flag when the next node is the target

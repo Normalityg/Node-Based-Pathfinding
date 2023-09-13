@@ -49,19 +49,22 @@ function nbp_node_debug_draw(){ // Draw node information
 			}
 			
 			// Display whether or not the node is unreachable
-			if (blocked && nbpDebugComplex)draw_text_color(x - 40,y - 12,"BLOCKED",c_maroon,c_maroon,c_maroon,c_maroon,1);
+			if (nodeBlocked && nbpDebugComplex)draw_text_color(x - 40,y - 12,"BLOCKED",c_maroon,c_maroon,c_maroon,c_maroon,1);
 		}
 	}
 }
 
 function nbp_pathfinder_debug_draw(){ // Draw pathfinder information
 	if (nbpDebug){ // Check if nbpDebug has been turned on
+		// Dont draw if it needs to caculate a new path
+		if (pathTimer != -1)return;
+		
 		// Draw current path
 		if (path != false && array_length(path) > 0){
 			for (var i = array_length(path) - 1; i > 0; i --){
-				draw_line_color(path[i][0].x + path[i][1], path[i][0].y + path[i][2], path[i - 1][0].x + path[i - 1][1], path[i - 1][0].y + path[i - 1][2],c_aqua,c_aqua);
+				if (nbp_node_exists(path[i][3],path[i][4]) && nbp_node_exists(path[i - 1][3],path[i - 1][4]))draw_line_color(path[i][0].x + path[i][1], path[i][0].y + path[i][2], path[i - 1][0].x + path[i - 1][1], path[i - 1][0].y + path[i - 1][2],c_aqua,c_aqua);
 			}
-			if (nbpDebugComplex)draw_line(x, y, path[0][0].x + path[0][1], path[0][0].y + path[0][2]);
+			if (nbpDebugComplex)draw_line(x, y, currentNode[0][0].x + currentNode[0][1], currentNode[0][0].y + currentNode[0][2]);
 		}
 		if (nbpDebugComplex){ // Draw information as lines of text over the pathfinder
 			draw_text(x,y,"Arived " + string(arrived)); // Displays if the pathfinder has arrived or not
