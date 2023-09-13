@@ -12,6 +12,9 @@ function nbp_node_set(){ // Function to start tracking and treating the object a
 		// Variable creation
 		nodeRadius = nbp_node_radius_find(id); // Set radius of clear space for node
 		
+		// Set the default max distance of the node to the global var
+		maxDistance = nbpNodeDistance;
+		
 		visibleNodes = []; // List of all nbpNodes this node has line of sight to
 		if (nbpMakeNBake){ // If make and bake is on bake this node on make
 			nbp_node_bake(id);
@@ -53,8 +56,7 @@ function nbp_node_delete(_nodePointer){ // Function to delete a node
 function nbp_node_moved(){ // Rebakes the node when after it moves
 	with(other){
 		// Handle the visibleNodes array
-		nbp_node_unbake(self);
-		nbp_node_bake(self);
+		nbp_node_rebake();
 		
 		// Change amount of clear space this node has
 		nodeRadius = nbp_node_radius_find(self);

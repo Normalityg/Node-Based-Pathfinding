@@ -42,7 +42,7 @@ function nbp_pathfinder_step(){ // Code that runs during a pathfinders step even
 			if (collision_line(x, y, path[0][0].x + path[0][1], path[0][0].y + path[0][2], nbpCollision, true, true)){ // If something is blocking the pathfinder from the targetNode
 				if (pathTimer = -1 && chasingTarget)pathTimer = irandom_range(0,10);
 			}
-			else if (!chasingTarget && point_distance(x, y, path[0][0].x + path[0][1], path[0][0].y + path[0][2]) < nbpNodeDistance){ // Otherwise the targetNode is visible and in range check the switch to the last node in the path
+			else if (!chasingTarget && point_distance(x, y, path[0][0].x + path[0][1], path[0][0].y + path[0][2]) < path[0][0].maxDistance){ // Otherwise the targetNode is visible and in range check the switch to the last node in the path
 				var canSeeTarget = !nbpComplexNodes; // If complexNodes is enabled it isnt sure it can see yet
 				
 				if (nbpComplexNodes){ // Check from the edge of the sprite

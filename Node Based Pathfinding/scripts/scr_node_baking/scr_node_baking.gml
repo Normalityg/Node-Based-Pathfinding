@@ -4,6 +4,8 @@ function nbp_node_bake(_node){ // Function for adding new nbpNodes into an alrea
 	thisNode.visibleNodes = []; // Clear visibleNodes
 	var visibleNodeLength = 0; // Track length of visibleNodes
 	
+	var visibleNodeDistance = thisNode.maxDistance // Store the maxDistance of the node
+	
 	// Empty array for complexNodes collision checks
 	if (nbpComplexNodes)var vecToTarget = [0,0];
 	
@@ -14,7 +16,7 @@ function nbp_node_bake(_node){ // Function for adding new nbpNodes into an alrea
 				//var thisRightLineX = (thisNode.x * 2) - thisLeftLineX, thisRightLineY = (thisNode.y * 2) - thisLeftLineY; 
 				//var targetRightLineX = (thisNode.x * 2) - targetLeftLineX, targetRightLineY = (thisNode.y * 2) - targetLeftLineY; 
 				
-		if (nbpNodeDistance < point_distance(thisNode.x,thisNode.y,targetNode.x,targetNode.y))continue; // If the node is further than the max distance dont add
+		if (visibleNodeDistance < point_distance(thisNode.x,thisNode.y,targetNode.x,targetNode.y))continue; // If the node is further than the max distance dont add
 		
 		// Check if there is line of sight between the two nbpNodes
 		if (!collision_line(thisNode.x,thisNode.y,targetNode.x,targetNode.y,nbpCollision,true,true)){
@@ -53,6 +55,9 @@ function nbp_node_bake_ghost(_node){ // Function for nbpNodes that only want to 
 	thisNode.visibleNodes = []; // Set visibleNodes
 	var visibleNodeLength = 0; // Track length of visibleNodes
 	
+	thisNode.maxDistance = nbpNodeDistance; // Set the ghost nodes maxDistance
+	var visibleNodeDistance = thisNode.maxDistance // Store the maxDistance of the node
+	
 	thisNode.nodeRadius = nbp_node_radius_find(_node) * 2; // Double the ghosts radius to get the max radius
 	
 	// Empty array for complexNodes collision checks
@@ -62,7 +67,7 @@ function nbp_node_bake_ghost(_node){ // Function for nbpNodes that only want to 
 		
 		var targetNode = nbpNodes[i]; // Node being checked for visibility
 		
-		if (nbpNodeDistance < point_distance(thisNode.x,thisNode.y,targetNode.x,targetNode.y))continue; // If the node is further than the max distance dont add
+		if (visibleNodeDistance < point_distance(thisNode.x,thisNode.y,targetNode.x,targetNode.y))continue; // If the node is further than the max distance dont add
 		
 		// Check if there is line of sight between the two nbpNodes
 		if (!collision_line(thisNode.x,thisNode.y,targetNode.x,targetNode.y,nbpCollision,true,true)){
@@ -117,6 +122,15 @@ function nbp_node_unbake(_node){ // Function for removing a node from other nbpN
 	thisNode.visibleNodes = []; // Empty visibleNodes of contents
 }
 
+function nbp_node_rebake(){ // Function to rebake the calling object
+	var _node = other.id; // Get the calling objects id
+	
+	// Unbake and rebake the calling node
+	nbp_node_unbake(_node);
+	nbp_node_bake(_node);
+	
+}
+
 function nbp_node_bake_all(){ // Function for connecting all nbpNodes to eachother
 	
 	// Empty array for complexNodes collision checks
@@ -127,12 +141,14 @@ function nbp_node_bake_all(){ // Function for connecting all nbpNodes to eachoth
 		var thisNode = nbpNodes[i]; // Current node being baked
 		thisNode.visibleNodes = []; // Clear visibleNodes
 		var visibleNodeLength = 0; // Track length of visibleNodes
+		
+		var visibleNodeDistance = thisNode.maxDistance // Store the maxDistance of the node
 	
 		for (var j = array_length(nbpNodes) - 1; j >= 0; j --){ // Loop through all nbpNodes to check if they are visible
 			
 			var targetNode = nbpNodes[j]; // Node being checked for visibility
 			
-			if (nbpNodeDistance < point_distance(thisNode.x,thisNode.y,targetNode.x,targetNode.y))continue; // If the node is further than the max distance dont add
+			if (visibleNodeDistance < point_distance(thisNode.x,thisNode.y,targetNode.x,targetNode.y))continue; // If the node is further than the max distance dont add
 			
 			// Check if there is line of sight between the two nbpNodes
 			if (!collision_line(thisNode.x,thisNode.y,targetNode.x,targetNode.y,nbpCollision,true,true)){
