@@ -64,7 +64,7 @@ function nbp_pathfinder_debug_draw(){ // Draw pathfinder information
 			for (var i = array_length(path) - 1; i > 0; i --){
 				if (nbp_node_exists(path[i][3],path[i][4]) && nbp_node_exists(path[i - 1][3],path[i - 1][4]))draw_line_color(path[i][0].x + path[i][1], path[i][0].y + path[i][2], path[i - 1][0].x + path[i - 1][1], path[i - 1][0].y + path[i - 1][2],c_aqua,c_aqua);
 			}
-			if (nbpDebugComplex)draw_line(x, y, currentNode[0][0].x + currentNode[0][1], currentNode[0][0].y + currentNode[0][2]);
+			if (nbpDebugComplex)draw_line_color(x, y, currentNode[0].x + currentNode[1], currentNode[0].y + currentNode[2],c_lime,c_lime);
 		}
 		if (nbpDebugComplex){ // Draw information as lines of text over the pathfinder
 			draw_text(x,y,"Arived " + string(arrived)); // Displays if the pathfinder has arrived or not

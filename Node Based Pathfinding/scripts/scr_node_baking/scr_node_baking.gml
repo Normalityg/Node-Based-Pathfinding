@@ -12,9 +12,6 @@ function nbp_node_bake(_node){ // Function for adding new nbpNodes into an alrea
 	for (var i = array_length(nbpNodes) - 1; i >= 0; i --){ // Loop through all nbpNodes to check if they are visible
 		
 		var targetNode = nbpNodes[i]; // Node being checked for visibility
-		
-				//var thisRightLineX = (thisNode.x * 2) - thisLeftLineX, thisRightLineY = (thisNode.y * 2) - thisLeftLineY; 
-				//var targetRightLineX = (thisNode.x * 2) - targetLeftLineX, targetRightLineY = (thisNode.y * 2) - targetLeftLineY; 
 				
 		if (visibleNodeDistance < point_distance(thisNode.x,thisNode.y,targetNode.x,targetNode.y))continue; // If the node is further than the max distance dont add
 		
@@ -123,7 +120,7 @@ function nbp_node_unbake(_node){ // Function for removing a node from other nbpN
 }
 
 function nbp_node_rebake(){ // Function to rebake the calling object
-	var _node = other.id; // Get the calling objects id
+	var _node = self; // Get the calling objects id
 	
 	// Unbake and rebake the calling node
 	nbp_node_unbake(_node);

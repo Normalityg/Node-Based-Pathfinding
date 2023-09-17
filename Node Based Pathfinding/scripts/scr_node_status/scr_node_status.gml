@@ -1,30 +1,29 @@
 function nbp_node_set(){ // Function to start tracking and treating the object as a node
 	// Track node and create variables 
-	with(other){
-		// Unique identifier for this node only
-		nodeIdentity = nbpNodeCount;
-		nbpNodeCount ++;
-		
-		// Variable denoting if the node is in contact with a collidable
-		if (collision_point(x, y, nbpCollision,true, true))nodeBlocked = true;
-		else nodeBlocked = false;
-		
-		// Add node to global array and store a pointer in the node
-		nodesPointer = array_length(nbpNodes); // Where in nbpNodes this node is stored
-		nbpNodes[nodesPointer] = id;
-		
-		// Variable creation
-		nodeRadius = nbp_node_radius_find(id); // Set radius of clear space for node
-		
-		// Set the default max distance of the node to the global var
-		nodeMaxDistance = nbpNodeDistance;
-		
-		visibleNodes = []; // List of all nbpNodes this node has line of sight to
-		if (nbpMakeNBake){ // If make and bake is on bake this node on make
-			nbp_node_bake(id);
-		}
-		
+	
+	// Unique identifier for this node only
+	nodeIdentity = nbpNodeCount;
+	nbpNodeCount ++;
+	
+	// Variable denoting if the node is in contact with a collidable
+	if (collision_point(x, y, nbpCollision,true, true))nodeBlocked = true;
+	else nodeBlocked = false;
+	
+	// Add node to global array and store a pointer in the node
+	nodesPointer = array_length(nbpNodes); // Where in nbpNodes this node is stored
+	nbpNodes[nodesPointer] = self;
+	
+	// Variable creation
+	nodeRadius = nbp_node_radius_find(self); // Set radius of clear space for node
+	
+	// Set the default max distance of the node to the global var
+	nodeMaxDistance = nbpNodeDistance;
+	
+	visibleNodes = []; // List of all nbpNodes this node has line of sight to
+	if (nbpMakeNBake){ // If make and bake is on bake this node on make
+		nbp_node_bake(self);
 	}
+	
 }
 
 function nbp_node_delete(_nodePointer){ // Function to delete a node
@@ -58,17 +57,16 @@ function nbp_node_delete(_nodePointer){ // Function to delete a node
 }
 
 function nbp_node_moved(){ // Rebakes the node when after it moves
-	with(other){
-		// Handle the visibleNodes array
-		nbp_node_rebake();
-		
-		// Change amount of clear space this node has
-		nodeRadius = nbp_node_radius_find(self);
-		
-		// Update blocked for the new position
-		if (collision_point(x, y, nbpCollision,true, true))nodeBlocked = true;
-		else nodeBlocked = false;
-	}
+	// Unbake the visibleNodes array
+	nbp_node_rebake();
+	
+	// Change amount of clear space this node has
+	nodeRadius = nbp_node_radius_find(self);
+	
+	// Update blocked for the new position
+	if (collision_point(x, y, nbpCollision,true, true))nodeBlocked = true;
+	else nodeBlocked = false;
+	
 }
 
 function nbp_node_exists(_pointer, _identity){ // Check if the nodes pointer is an available pointer then check if that pointer is the same as the node in that pointer using its nodeIdentity
