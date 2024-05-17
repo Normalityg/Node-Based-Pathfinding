@@ -80,7 +80,7 @@ function nbp_pathfinder_step(){ // Code that runs during a pathfinders step even
 		}
 		
 		// If the targetNode has changed recalculate the path
-		if (targetNode != path[0][0])pathTimer = 0;
+		if (targetNode.nodeIdentity != path[0][0].nodeIdentity)pathTimer = 0;
 		
 		// Check if its in range of the next node on the path and that its within the node radius then set the next path as the target
 		if (point_distance(x, y, currentNode[0].x + currentNode[1], currentNode[0].y + currentNode[2]) < nodeRange && point_distance(x, y, currentNode[0].x + currentNode[1], currentNode[0].y + currentNode[2]) < currentNode[0].nodeRadius){
