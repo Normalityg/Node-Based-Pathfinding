@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "scr_path_refine",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "nbp_scripts",
-    "path": "folders/Scripts/nbp_scripts.yy",
+  "$GMScript":"",
+  "%Name":"scr_path_refine",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_path_refine",
+  "parent":{
+    "name":"nbp_scripts",
+    "path":"folders/Scripts/nbp_scripts.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }
